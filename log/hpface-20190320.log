@@ -1,0 +1,97 @@
+2019-03-20 09:52:54.517  INFO 35140 --- [main] PlatformApplication           : Starting PlatformApplication on tb060-PC with PID 35140 (F:\work-doc\hpface\target\classes started by tb060 in F:\work-doc\hpface)
+2019-03-20 09:52:54.517  INFO 35140 --- [main] PlatformApplication           : No active profile set, falling back to default profiles: default
+2019-03-20 09:52:54.564  INFO 35140 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@10a9d961: startup date [Wed Mar 20 09:52:54 CST 2019]; root of context hierarchy
+2019-03-20 09:52:55.250  WARN 35140 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.hpface.mapper]' package. Please check your configuration.
+2019-03-20 09:52:55.375  WARN 35140 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.hpface]' package. Please check your configuration.
+2019-03-20 09:52:55.641  INFO 35140 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$7b273baa] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-20 09:52:56.062  INFO 35140 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8002 (http)
+2019-03-20 09:52:56.078  INFO 35140 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2019-03-20 09:52:56.078  INFO 35140 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2019-03-20 09:52:56.140  INFO 35140 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-03-20 09:52:56.140  INFO 35140 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1576 ms
+2019-03-20 09:52:56.250  INFO 35140 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-03-20 09:52:56.250  INFO 35140 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-03-20 09:52:56.437  WARN 35140 --- [main] ationConfigEmbeddedWebApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dbSqlSessionFactory' defined in class path resource [com/hpface/config/DBConf.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'testSqlSessionFactory' threw exception; nested exception is java.io.FileNotFoundException: class path resource [mapper/] cannot be resolved to URL because it does not exist
+2019-03-20 09:52:56.437  INFO 35140 --- [main] o.apache.catalina.core.StandardService   : Stopping service Tomcat
+2019-03-20 09:52:56.484  WARN 35140 --- [localhost-startStop-1] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:144)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+2019-03-20 09:52:56.515  INFO 35140 --- [main] utoConfigurationReportLoggingInitializer : 
+
+Error starting ApplicationContext. To display the auto-configuration report re-run your application with 'debug' enabled.
+2019-03-20 09:52:56.515 ERROR 35140 --- [main] o.s.boot.SpringApplication               : Application startup failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dbSqlSessionFactory' defined in class path resource [com/hpface/config/DBConf.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'testSqlSessionFactory' threw exception; nested exception is java.io.FileNotFoundException: class path resource [mapper/] cannot be resolved to URL because it does not exist
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:599)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1128)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1023)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:510)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:482)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:306)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:230)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:302)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:197)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:751)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:861)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:541)
+	at org.springframework.boot.context.embedded.EmbeddedWebApplicationContext.refresh(EmbeddedWebApplicationContext.java:122)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:761)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:371)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1186)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1175)
+	at PlatformApplication.main(PlatformApplication.java:19)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'testSqlSessionFactory' threw exception; nested exception is java.io.FileNotFoundException: class path resource [mapper/] cannot be resolved to URL because it does not exist
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:189)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:588)
+	... 18 common frames omitted
+Caused by: java.io.FileNotFoundException: class path resource [mapper/] cannot be resolved to URL because it does not exist
+	at org.springframework.core.io.ClassPathResource.getURL(ClassPathResource.java:187)
+	at org.springframework.core.io.support.PathMatchingResourcePatternResolver.findPathMatchingResources(PathMatchingResourcePatternResolver.java:465)
+	at org.springframework.core.io.support.PathMatchingResourcePatternResolver.getResources(PathMatchingResourcePatternResolver.java:292)
+	at DBConf.testSqlSessionFactory(DBConf.java:46)
+	at DBConf$$EnhancerBySpringCGLIB$$d3abcbc1.CGLIB$testSqlSessionFactory$2(<generated>)
+	at DBConf$$EnhancerBySpringCGLIB$$d3abcbc1$$FastClassBySpringCGLIB$$8521ef84.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:228)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:356)
+	at DBConf$$EnhancerBySpringCGLIB$$d3abcbc1.testSqlSessionFactory(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:162)
+	... 19 common frames omitted
+
+2019-03-20 10:16:31.140  INFO 3204 --- [main] com.aijuke.hpface.PlatformApplication    : Starting PlatformApplication on tb060-PC with PID 3204 (F:\work-doc\hpface\target\classes started by tb060 in F:\work-doc\hpface)
+2019-03-20 10:16:31.156  INFO 3204 --- [main] com.aijuke.hpface.PlatformApplication    : No active profile set, falling back to default profiles: default
+2019-03-20 10:16:31.249  INFO 3204 --- [main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3549bca9: startup date [Wed Mar 20 10:16:31 CST 2019]; root of context hierarchy
+2019-03-20 10:16:32.060  WARN 3204 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.hpface.mapper]' package. Please check your configuration.
+2019-03-20 10:16:32.232  WARN 3204 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.aijuke.hpface]' package. Please check your configuration.
+2019-03-20 10:16:32.497  INFO 3204 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c5360063] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-03-20 10:16:32.965  INFO 3204 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8002 (http)
+2019-03-20 10:16:32.981  INFO 3204 --- [main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2019-03-20 10:16:32.981  INFO 3204 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.5
+2019-03-20 10:16:33.059  INFO 3204 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-03-20 10:16:33.059  INFO 3204 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1810 ms
+2019-03-20 10:16:33.152  INFO 3204 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2019-03-20 10:16:33.152  INFO 3204 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-03-20 10:16:33.589  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rest/v1/device/register]}" onto public java.lang.Object com.aijuke.hpface.modules.device.api.DeviceApi.register(com.aijuke.hpface.modules.device.api.Device)
+2019-03-20 10:16:33.589  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/deviceTime/check]}" onto public java.lang.Object com.aijuke.hpface.modules.device.api.DeviceTimeApi.getCurrentTime()
+2019-03-20 10:16:33.589  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/rest/v1/identityRecord/save]}" onto public java.lang.Object com.aijuke.hpface.modules.device.api.IdentityRecordApi.save(com.aijuke.hpface.modules.device.api.IdentityRecord)
+2019-03-20 10:16:33.589  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/app/api/pushMessage]}" onto public java.lang.Object com.aijuke.hpface.modules.device.api.RztApi.activation(com.aijuke.hpface.modules.device.api.PersonInfo)
+2019-03-20 10:16:33.589  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/app/api/testNet]}" onto public java.lang.Object com.aijuke.hpface.modules.device.api.RztApi.testNet()
+2019-03-20 10:16:33.589  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/app/api/linkagePhoto]}" onto public java.lang.Object com.aijuke.hpface.modules.device.api.RztApi.linkagePhoto(com.aijuke.hpface.modules.device.api.PersonInfo) throws java.io.IOException
+2019-03-20 10:16:33.589  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2019-03-20 10:16:33.589  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2019-03-20 10:16:33.667  INFO 3204 --- [main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3549bca9: startup date [Wed Mar 20 10:16:31 GMT+08:00 2019]; root of context hierarchy
+2019-03-20 10:16:33.761  INFO 3204 --- [main] o.s.s.c.ThreadPoolTaskScheduler          : Initializing ExecutorService  'defaultSockJsTaskScheduler'
+2019-03-20 10:16:33.792  INFO 3204 --- [main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/ws/device] onto handler of type [class org.springframework.web.socket.server.support.WebSocketHttpRequestHandler]
+2019-03-20 10:16:34.213  INFO 3204 --- [main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-03-20 10:16:34.276  INFO 3204 --- [main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8002 (http)
+2019-03-20 10:16:34.276  INFO 3204 --- [main] com.aijuke.hpface.PlatformApplication    : Started PlatformApplication in 3.885 seconds (JVM running for 5.05)
+2019-03-20 10:56:05.154  INFO 3204 --- [http-nio-8002-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-03-20 10:56:05.154  INFO 3204 --- [http-nio-8002-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2019-03-20 10:56:05.170  INFO 3204 --- [http-nio-8002-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 16 ms
+2019-03-20 11:11:00.778  INFO 3204 --- [http-nio-8002-exec-5] c.a.hpface.modules.device.api.DeviceApi  : 接收上报注册信息
+2019-03-20 11:11:00.925  INFO 3204 --- [http-nio-8002-exec-5] c.a.hpface.modules.device.api.DeviceApi  : {"authType":1,"doorPassword":"333666","ip":"192.168.0.13","mac":"8c:14:7d:d0:f4:f5","machineCode":"71E1E1C2C228286060ACAC7F7F6B6BF9F994945656ECECDCDCD5D53E3E5151BE7364892A70D6D6D643EA4D7A36551136BDC2E0FE36EADCEA872BBF6C812BC881872B9EBFBFDCBFBFDC2B2BEA98EA17E02DD0367AA37AE02D11BC55B0B636EADCEA64BDDCBF632BBF2B2BC84F77F563777786C87763872B863655F5177755874F5563BFBF9E4DD5B6DC636C63BF774FF5F5367B773687C84D55EA98EA112CD536EADCEAA5E02DD0367AA37AE02D11EA5AB895E2EE","model":"HP-W107-I2/X-DZ","password":"123456","port":"8000","regmen":10000,"username":"admin","version":"1.4.0"}

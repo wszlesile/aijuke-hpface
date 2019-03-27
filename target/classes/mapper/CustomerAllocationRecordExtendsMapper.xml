@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aijuke.hpface.mapper.CustomerAllocationRecordExtendsMapper" >
+  <select id="selectTodayByParams" parameterType="map" resultMap="com.aijuke.hpface.mapper.CustomerAllocationRecordMapper.BaseResultMap">
+    SELECT * FROM customer_allocation_record WHERE is_delete = 0
+    <if test="customerId!=null and customerId!=0 ">
+      AND customer_id=#{customerId}
+    </if>
+    <if test="houseId!=null and houseId!=0 ">
+      AND house_id=#{houseId}
+    </if>
+    <if test="whetherCheck!=null">
+      AND whether_check=#{whetherCheck}
+    </if>
+    <if test="status!=null">
+      AND status=#{status}
+    </if>
+
+    AND <![CDATA[DATE_FORMAT(int_time, '%Y-%m-%d')<=DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s')
+            AND DATE_FORMAT(leave_time, '%Y-%m-%d')>=DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s')
+       ]]>
+    ORDER BY int_time DESC LIMIT 1
+  </select>
+</mapper>

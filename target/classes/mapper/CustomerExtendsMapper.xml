@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aijuke.hpface.mapper.CustomerExtendsMapper" >
+  <select id="selectOneByParams" parameterType="map" resultMap="com.aijuke.hpface.mapper.CustomerMapper.BaseResultMap">
+     select *from customer where 1
+    <if test="name !=null and name !='' ">
+       AND name = #{name}
+    </if>
+    <if test="cardNo !=null and cardNo !='' ">
+      AND card_no = #{cardNo}
+    </if>
+    limit 1
+  </select>
+</mapper>

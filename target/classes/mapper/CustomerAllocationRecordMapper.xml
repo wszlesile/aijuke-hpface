@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aijuke.hpface.mapper.CustomerAllocationRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.aijuke.hpface.model.CustomerAllocationRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="uid" property="uid" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="BIGINT" />
+    <result column="account_id" property="accountId" jdbcType="BIGINT" />
+    <result column="house_id" property="houseId" jdbcType="BIGINT" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="allocation_time" property="allocationTime" jdbcType="TIMESTAMP" />
+    <result column="int_time" property="intTime" jdbcType="TIMESTAMP" />
+    <result column="leave_time" property="leaveTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="fee" property="fee" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+    <result column="modify_user_id" property="modifyUserId" jdbcType="BIGINT" />
+    <result column="whether_check" property="whetherCheck" jdbcType="INTEGER" />
+    <result column="third_id" property="thirdId" jdbcType="VARCHAR" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="sub_order_id" property="subOrderId" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, customer_id, account_id, house_id, telephone, password, allocation_time, 
+    int_time, leave_time, status, fee, is_delete, gmt_create, gmt_modify, create_user_id, 
+    modify_user_id, whether_check, third_id, source_type, sub_order_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_allocation_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer_allocation_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.aijuke.hpface.model.CustomerAllocationRecord" >
+    insert into customer_allocation_record (id, uid, customer_id, 
+      account_id, house_id, telephone, 
+      password, allocation_time, int_time, 
+      leave_time, status, fee, 
+      is_delete, gmt_create, gmt_modify, 
+      create_user_id, modify_user_id, whether_check, 
+      third_id, source_type, sub_order_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, 
+      #{accountId,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT}, #{telephone,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{allocationTime,jdbcType=TIMESTAMP}, #{intTime,jdbcType=TIMESTAMP}, 
+      #{leaveTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{fee,jdbcType=VARCHAR}, 
+      #{isDelete,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=BIGINT}, #{modifyUserId,jdbcType=BIGINT}, #{whetherCheck,jdbcType=INTEGER}, 
+      #{thirdId,jdbcType=VARCHAR}, #{sourceType,jdbcType=INTEGER}, #{subOrderId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.aijuke.hpface.model.CustomerAllocationRecord" >
+    insert into customer_allocation_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="allocationTime != null" >
+        allocation_time,
+      </if>
+      <if test="intTime != null" >
+        int_time,
+      </if>
+      <if test="leaveTime != null" >
+        leave_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id,
+      </if>
+      <if test="whetherCheck != null" >
+        whether_check,
+      </if>
+      <if test="thirdId != null" >
+        third_id,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="subOrderId != null" >
+        sub_order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="houseId != null" >
+        #{houseId,jdbcType=BIGINT},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="allocationTime != null" >
+        #{allocationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intTime != null" >
+        #{intTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveTime != null" >
+        #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserId != null" >
+        #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="whetherCheck != null" >
+        #{whetherCheck,jdbcType=INTEGER},
+      </if>
+      <if test="thirdId != null" >
+        #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="subOrderId != null" >
+        #{subOrderId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aijuke.hpface.model.CustomerAllocationRecord" >
+    update customer_allocation_record
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=BIGINT},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=BIGINT},
+      </if>
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=BIGINT},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="allocationTime != null" >
+        allocation_time = #{allocationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="intTime != null" >
+        int_time = #{intTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="leaveTime != null" >
+        leave_time = #{leaveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=BIGINT},
+      </if>
+      <if test="modifyUserId != null" >
+        modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      </if>
+      <if test="whetherCheck != null" >
+        whether_check = #{whetherCheck,jdbcType=INTEGER},
+      </if>
+      <if test="thirdId != null" >
+        third_id = #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="subOrderId != null" >
+        sub_order_id = #{subOrderId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aijuke.hpface.model.CustomerAllocationRecord" >
+    update customer_allocation_record
+    set uid = #{uid,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=BIGINT},
+      account_id = #{accountId,jdbcType=BIGINT},
+      house_id = #{houseId,jdbcType=BIGINT},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      allocation_time = #{allocationTime,jdbcType=TIMESTAMP},
+      int_time = #{intTime,jdbcType=TIMESTAMP},
+      leave_time = #{leaveTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      fee = #{fee,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=BIGINT},
+      modify_user_id = #{modifyUserId,jdbcType=BIGINT},
+      whether_check = #{whetherCheck,jdbcType=INTEGER},
+      third_id = #{thirdId,jdbcType=VARCHAR},
+      source_type = #{sourceType,jdbcType=INTEGER},
+      sub_order_id = #{subOrderId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

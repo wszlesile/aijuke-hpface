@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aijuke.hpface.mapper.IdentityFaceDeviceExtendsMapper" >
+    <select id="selectOneByParams" parameterType="map" resultMap="com.aijuke.hpface.mapper.IdentityFaceDeviceMapper.BaseResultMap">
+        select *from identity_face_device where 1
+        <if test="mac!=null and mac!='' ">
+            and mac=#{mac}
+        </if>
+        <if test="deviceId!=null and deviceId!='' ">
+            and device_id=#{deviceId}
+        </if>
+        <if test="houseId!=null and houseId!=0 ">
+            and house_id=#{houseId}
+        </if>
+        limit 1
+    </select>
+</mapper>

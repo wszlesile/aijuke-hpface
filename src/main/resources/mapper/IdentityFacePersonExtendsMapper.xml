@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aijuke.hpface.mapper.IdentityFacePersonExtendsMapper" >
+  <select id="selectOneByParams" parameterType="map" resultMap="com.aijuke.hpface.mapper.IdentityFacePersonMapper.BaseResultMap">
+     select *from identity_face_person where 1
+    <if test="name!=null and name !='' ">
+      and  name = #{name}
+    </if>
+    <if test="idCardNum!=null and idCardNum !='' ">
+      and  id_card_num = #{idCardNum}
+    </if>
+  </select>
+</mapper>
