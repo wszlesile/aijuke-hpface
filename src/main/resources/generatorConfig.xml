@@ -51,7 +51,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="identity_person_house" domainObjectName="IdentityPersonHouse" enableCountByExample="false"
+        <table tableName="sub_orders" domainObjectName="SubOrders" enableCountByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false">
 
         </table>

@@ -14,10 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 @Service
 public class IdentityPersonServiceImpl implements IdentityPersonService {
     @Autowired
@@ -32,6 +30,8 @@ public class IdentityPersonServiceImpl implements IdentityPersonService {
     private IdentityPersonHouseExtendsMapper identityPersonHouseExtendsMapper;
     @Autowired
     private CustomerExtendsMapper customerExtendsMapper;
+    @Autowired
+    private SubOrdersMapper subOrdersMapper;
     private static final Logger log = LoggerFactory.getLogger(DeviceApi.class);
     @Override
     public boolean registerDevice(Device device) {
@@ -247,6 +247,15 @@ public class IdentityPersonServiceImpl implements IdentityPersonService {
         // 入住
         allocationRecord.setStatus(1);
         customerAllocationRecordExtendsMapper.updateByPrimaryKeySelective(allocationRecord);
+        long subOrderId = allocationRecord.getSubOrderId();
+        if(subOrderId!=0){
+            // 更新线上订单状态
+            SubOrders subOrders = new SubOrders();
+            subOrders.setId(subOrderId);
+            subOrders.setStatus(1);
+            subOrders.setGmtModify(new Date());
+            subOrdersMapper.updateByPrimaryKeySelective(subOrders);
+        }
         openDoorCommand=1;// 入住成功 开门
         resultMap.put("openDoorCommand", openDoorCommand);
         resultMap.put("openDoorNotice", "欢迎入住");
