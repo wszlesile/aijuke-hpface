@@ -2,8 +2,6 @@ package com.aijuke.hpface.mapper;
 
 import com.aijuke.hpface.model.IdentityPersonHouse;
 
-import java.util.Map;
-
 public interface IdentityPersonHouseMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -16,6 +14,4 @@ public interface IdentityPersonHouseMapper {
     int updateByPrimaryKeySelective(IdentityPersonHouse record);
 
     int updateByPrimaryKey(IdentityPersonHouse record);
-
-    IdentityPersonHouse selectOneByParams(Map<String, Object> params);
 }

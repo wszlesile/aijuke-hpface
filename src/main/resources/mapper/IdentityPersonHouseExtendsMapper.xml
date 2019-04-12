@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aijuke.hpface.mapper.IdentityPersonHouseExtendsMapper" >
+
+  <select id="selectOneByParams" parameterType="map" resultMap="com.aijuke.hpface.mapper.IdentityPersonHouseMapper.BaseResultMap">
+    select *from identity_person_house
+    where 1
+    <if test="uuid != null and uuid!=0 " >
+      and uuid = #{uuid}
+    </if>
+    <if test="houseId != null and houseId!=0 " >
+      and house_id = #{houseId}
+    </if>
+  </select>
+</mapper>

@@ -29,7 +29,7 @@ public class IdentityPersonServiceImpl implements IdentityPersonService {
     @Autowired
     private IdentityFacePersonExtendsMapper identityFacePersonExtendsMapper;
     @Autowired
-    private IdentityPersonHouseMapper identityPersonHouseMapper;
+    private IdentityPersonHouseExtendsMapper identityPersonHouseExtendsMapper;
     @Autowired
     private CustomerExtendsMapper customerExtendsMapper;
     private static final Logger log = LoggerFactory.getLogger(DeviceApi.class);
@@ -83,23 +83,22 @@ public class IdentityPersonServiceImpl implements IdentityPersonService {
 
         params.put("name",person.getName());
         params.put("idCardNum",person.getIdCardNum());
+        params.put("uuid",person.getUuid());
         IdentityFacePerson identityFacePerson = identityFacePersonExtendsMapper.selectOneByParams(params);
-        long uuid =0;
         // 将用户保存或更新
         if(identityFacePerson == null){
-            uuid=GenerateIdUtil.generateId();
             // 保存
             IdentityFacePerson item = new IdentityFacePerson();
-            item.setId(uuid);
+            item.setId(Long.parseLong(person.getUuid()));
             item.setName(person.getName());
             item.setIdCardNum(person.getIdCardNum());
             item.setIcCardNum(person.getIcCardNum());
             item.setUserType(person.getUserType());
             item.setFaceImg(person.getFaceImg());
+            item.setSource(0);
 
             identityFacePersonExtendsMapper.insertSelective(item);
         }else{
-            uuid=identityFacePerson.getId();
             // 更新
             identityFacePerson.setName(person.getName());
             identityFacePerson.setIdCardNum(person.getIdCardNum());
@@ -109,20 +108,20 @@ public class IdentityPersonServiceImpl implements IdentityPersonService {
 
             identityFacePersonExtendsMapper.updateByPrimaryKeySelective(identityFacePerson);
         }
-        params.put("uuid",uuid);
-        IdentityPersonHouse identityPersonHouse = identityPersonHouseMapper.selectOneByParams(params);
+        IdentityPersonHouse identityPersonHouse = identityPersonHouseExtendsMapper.selectOneByParams(params);
         if(identityPersonHouse == null){
             // 插入关系绑定表数据
             identityPersonHouse = new IdentityPersonHouse();
             identityPersonHouse.setHouseId(houseId);
-            identityPersonHouse.setUuid(uuid);
-            identityPersonHouseMapper.insertSelective(identityPersonHouse);
+            identityPersonHouse.setUuid(Long.parseLong(person.getUuid()));
+            identityPersonHouse.setSource(0);
+            identityPersonHouseExtendsMapper.insertSelective(identityPersonHouse);
         }
 
         // 推送到设备上
         String mac = device.getMac();
         List<SyncPerson2Device> syncPerson2DeviceList = new ArrayList<>();
-        person.setUuid(uuid+"");
+        person.setUuid(person.getUuid());
         syncPerson2DeviceList.add(person);
         boolean r = deviceWebSocketHandler.sendUser(syncPerson2DeviceList,mac);
         if(!r){
@@ -185,13 +184,13 @@ public class IdentityPersonServiceImpl implements IdentityPersonService {
         }
         params.put("uuid",uid);
         // 删除关系表数据
-        IdentityPersonHouse identityPersonHouse = identityPersonHouseMapper.selectOneByParams(params);
-        if(identityFacePerson==null){
+        IdentityPersonHouse identityPersonHouse = identityPersonHouseExtendsMapper.selectOneByParams(params);
+        if(identityPersonHouse==null){
             resultMap.put("success",false);
             resultMap.put("msg","没有用户房间绑定关系，删除失败");
             return resultMap;
         }
-        identityPersonHouseMapper.deleteByPrimaryKey(identityPersonHouse.getId());
+        identityPersonHouseExtendsMapper.deleteByPrimaryKey(identityPersonHouse.getId());
         resultMap.put("success",true);
         resultMap.put("msg","success");
         return resultMap;

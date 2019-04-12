@@ -12,6 +12,8 @@ public class IdentityFaceDevice implements Serializable {
 
     private String mac;
 
+    private Integer source;
+
     private Date gmtCreate;
 
     private Date gmtModify;
@@ -48,6 +50,14 @@ public class IdentityFaceDevice implements Serializable {
 
     public void setMac(String mac) {
         this.mac = mac == null ? null : mac.trim();
+    }
+
+    public Integer getSource() {
+        return source;
+    }
+
+    public void setSource(Integer source) {
+        this.source = source;
     }
 
     public Date getGmtCreate() {

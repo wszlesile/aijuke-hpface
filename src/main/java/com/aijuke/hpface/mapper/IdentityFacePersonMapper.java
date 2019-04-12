@@ -13,5 +13,7 @@ public interface IdentityFacePersonMapper {
 
     int updateByPrimaryKeySelective(IdentityFacePerson record);
 
+    int updateByPrimaryKeyWithBLOBs(IdentityFacePerson record);
+
     int updateByPrimaryKey(IdentityFacePerson record);
 }

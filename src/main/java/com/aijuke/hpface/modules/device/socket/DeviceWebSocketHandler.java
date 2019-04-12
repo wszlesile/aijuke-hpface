@@ -82,7 +82,7 @@ public class DeviceWebSocketHandler extends BinaryWebSocketHandler {
                     msg.put("flag", "101");
                     msg.put("mac", mac);
                     msg.put("data", personList);
-                    log.info("sendUser params "+JSONObject.toJSONString(msg));
+                    //log.info("sendUser params "+JSONObject.toJSONString(msg));
                     Boolean flag = this.sendMessage(session, JSONObject.toJSONString(msg));
                     return flag;
                 }
@@ -107,6 +107,7 @@ public class DeviceWebSocketHandler extends BinaryWebSocketHandler {
                 person.put("idCardNum", idCardNum);
                 person.put("uuid", uuid);
                 msg.put("data", person);
+                log.info("sendUser params "+JSONObject.toJSONString(msg));
                 flag = this.sendMessage(session, JSONObject.toJSONString(msg));
             }
         }

@@ -5,11 +5,12 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="house_id" property="houseId" jdbcType="BIGINT" />
     <result column="uuid" property="uuid" jdbcType="BIGINT" />
+    <result column="source" property="source" jdbcType="INTEGER" />
     <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
     <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, house_id, uuid, gmt_create, gmt_modify
+    id, house_id, uuid, source, gmt_create, gmt_modify
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -23,9 +24,11 @@
   </delete>
   <insert id="insert" parameterType="com.aijuke.hpface.model.IdentityPersonHouse" >
     insert into identity_person_house (id, house_id, uuid, 
-      gmt_create, gmt_modify)
+      source, gmt_create, gmt_modify
+      )
     values (#{id,jdbcType=BIGINT}, #{houseId,jdbcType=BIGINT}, #{uuid,jdbcType=BIGINT}, 
-      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP})
+      #{source,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.aijuke.hpface.model.IdentityPersonHouse" >
     insert into identity_person_house
@@ -38,6 +41,9 @@
       </if>
       <if test="uuid != null" >
         uuid,
+      </if>
+      <if test="source != null" >
+        source,
       </if>
       <if test="gmtCreate != null" >
         gmt_create,
@@ -56,6 +62,9 @@
       <if test="uuid != null" >
         #{uuid,jdbcType=BIGINT},
       </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
       <if test="gmtCreate != null" >
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
@@ -73,6 +82,9 @@
       <if test="uuid != null" >
         uuid = #{uuid,jdbcType=BIGINT},
       </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
       <if test="gmtCreate != null" >
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
@@ -86,18 +98,9 @@
     update identity_person_house
     set house_id = #{houseId,jdbcType=BIGINT},
       uuid = #{uuid,jdbcType=BIGINT},
+      source = #{source,jdbcType=INTEGER},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectOneByParams" parameterType="map" resultMap="BaseResultMap">
-    select *from identity_person_house
-    where 1
-    <if test="uuid != null and uuid!=0 " >
-      and uuid = #{uuid}
-    </if>
-    <if test="houseId != null and houseId!=0 " >
-      and house_id = #{houseId}
-    </if>
-  </select>
 </mapper>

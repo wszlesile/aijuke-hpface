@@ -10,6 +10,8 @@ public class IdentityPersonHouse implements Serializable {
 
     private Long uuid;
 
+    private Integer source;
+
     private Date gmtCreate;
 
     private Date gmtModify;
@@ -38,6 +40,14 @@ public class IdentityPersonHouse implements Serializable {
 
     public void setUuid(Long uuid) {
         this.uuid = uuid;
+    }
+
+    public Integer getSource() {
+        return source;
+    }
+
+    public void setSource(Integer source) {
+        this.source = source;
     }
 
     public Date getGmtCreate() {

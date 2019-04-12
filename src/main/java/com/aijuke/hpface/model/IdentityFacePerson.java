@@ -8,17 +8,21 @@ public class IdentityFacePerson implements Serializable {
 
     private String name;
 
-    private String faceImg;
-
     private String userType;
 
     private String idCardNum;
 
     private String icCardNum;
 
+    private String thirdId;
+
+    private Integer source;
+
     private Date gmtCreate;
 
     private Date gmtModify;
+
+    private String faceImg;
 
     private static final long serialVersionUID = 1L;
 
@@ -36,14 +40,6 @@ public class IdentityFacePerson implements Serializable {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getFaceImg() {
-        return faceImg;
-    }
-
-    public void setFaceImg(String faceImg) {
-        this.faceImg = faceImg == null ? null : faceImg.trim();
     }
 
     public String getUserType() {
@@ -70,6 +66,22 @@ public class IdentityFacePerson implements Serializable {
         this.icCardNum = icCardNum == null ? null : icCardNum.trim();
     }
 
+    public String getThirdId() {
+        return thirdId;
+    }
+
+    public void setThirdId(String thirdId) {
+        this.thirdId = thirdId == null ? null : thirdId.trim();
+    }
+
+    public Integer getSource() {
+        return source;
+    }
+
+    public void setSource(Integer source) {
+        this.source = source;
+    }
+
     public Date getGmtCreate() {
         return gmtCreate;
     }
@@ -84,5 +96,13 @@ public class IdentityFacePerson implements Serializable {
 
     public void setGmtModify(Date gmtModify) {
         this.gmtModify = gmtModify;
+    }
+
+    public String getFaceImg() {
+        return faceImg;
+    }
+
+    public void setFaceImg(String faceImg) {
+        this.faceImg = faceImg == null ? null : faceImg.trim();
     }
 }

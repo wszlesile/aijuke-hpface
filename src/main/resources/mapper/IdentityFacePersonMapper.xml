@@ -1,126 +1,169 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.aijuke.hpface.mapper.IdentityFacePersonMapper" >
-  <resultMap id="BaseResultMap" type="com.aijuke.hpface.model.IdentityFacePerson" >
-    <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="face_img" property="faceImg" jdbcType="VARCHAR" />
-    <result column="user_type" property="userType" jdbcType="VARCHAR" />
-    <result column="id_card_num" property="idCardNum" jdbcType="VARCHAR" />
-    <result column="ic_card_num" property="icCardNum" jdbcType="VARCHAR" />
-    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
-    <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aijuke.hpface.mapper.IdentityFacePersonMapper">
+  <resultMap id="BaseResultMap" type="com.aijuke.hpface.model.IdentityFacePerson">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+    <result column="id_card_num" jdbcType="VARCHAR" property="idCardNum" />
+    <result column="ic_card_num" jdbcType="VARCHAR" property="icCardNum" />
+    <result column="third_id" jdbcType="VARCHAR" property="thirdId" />
+    <result column="source" jdbcType="INTEGER" property="source" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, name, face_img, user_type, id_card_num, ic_card_num, gmt_create, gmt_modify
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.aijuke.hpface.model.IdentityFacePerson">
+    <result column="face_img" jdbcType="LONGVARCHAR" property="faceImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, user_type, id_card_num, ic_card_num, third_id, source, gmt_create, gmt_modify
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <sql id="Blob_Column_List">
+    face_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from identity_face_person
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from identity_face_person
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.aijuke.hpface.model.IdentityFacePerson" >
-    insert into identity_face_person (id, name, face_img, 
-      user_type, id_card_num, ic_card_num, 
-      gmt_create, gmt_modify)
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{faceImg,jdbcType=VARCHAR}, 
-      #{userType,jdbcType=VARCHAR}, #{idCardNum,jdbcType=VARCHAR}, #{icCardNum,jdbcType=VARCHAR}, 
-      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.aijuke.hpface.model.IdentityFacePerson">
+    insert into identity_face_person (id, name, user_type, 
+      id_card_num, ic_card_num, third_id, 
+      source, gmt_create, gmt_modify, 
+      face_img)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
+      #{idCardNum,jdbcType=VARCHAR}, #{icCardNum,jdbcType=VARCHAR}, #{thirdId,jdbcType=VARCHAR}, 
+      #{source,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, 
+      #{faceImg,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.aijuke.hpface.model.IdentityFacePerson" >
+  <insert id="insertSelective" parameterType="com.aijuke.hpface.model.IdentityFacePerson">
     insert into identity_face_person
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         id,
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         name,
       </if>
-      <if test="faceImg != null" >
-        face_img,
-      </if>
-      <if test="userType != null" >
+      <if test="userType != null">
         user_type,
       </if>
-      <if test="idCardNum != null" >
+      <if test="idCardNum != null">
         id_card_num,
       </if>
-      <if test="icCardNum != null" >
+      <if test="icCardNum != null">
         ic_card_num,
       </if>
-      <if test="gmtCreate != null" >
+      <if test="thirdId != null">
+        third_id,
+      </if>
+      <if test="source != null">
+        source,
+      </if>
+      <if test="gmtCreate != null">
         gmt_create,
       </if>
-      <if test="gmtModify != null" >
+      <if test="gmtModify != null">
         gmt_modify,
       </if>
+      <if test="faceImg != null">
+        face_img,
+      </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="name != null" >
+      <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="faceImg != null" >
-        #{faceImg,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null" >
+      <if test="userType != null">
         #{userType,jdbcType=VARCHAR},
       </if>
-      <if test="idCardNum != null" >
+      <if test="idCardNum != null">
         #{idCardNum,jdbcType=VARCHAR},
       </if>
-      <if test="icCardNum != null" >
+      <if test="icCardNum != null">
         #{icCardNum,jdbcType=VARCHAR},
       </if>
-      <if test="gmtCreate != null" >
+      <if test="thirdId != null">
+        #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
-      <if test="gmtModify != null" >
+      <if test="gmtModify != null">
         #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="faceImg != null">
+        #{faceImg,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.aijuke.hpface.model.IdentityFacePerson" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.aijuke.hpface.model.IdentityFacePerson">
     update identity_face_person
-    <set >
-      <if test="name != null" >
+    <set>
+      <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="faceImg != null" >
-        face_img = #{faceImg,jdbcType=VARCHAR},
-      </if>
-      <if test="userType != null" >
+      <if test="userType != null">
         user_type = #{userType,jdbcType=VARCHAR},
       </if>
-      <if test="idCardNum != null" >
+      <if test="idCardNum != null">
         id_card_num = #{idCardNum,jdbcType=VARCHAR},
       </if>
-      <if test="icCardNum != null" >
+      <if test="icCardNum != null">
         ic_card_num = #{icCardNum,jdbcType=VARCHAR},
       </if>
-      <if test="gmtCreate != null" >
+      <if test="thirdId != null">
+        third_id = #{thirdId,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
-      <if test="gmtModify != null" >
+      <if test="gmtModify != null">
         gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="faceImg != null">
+        face_img = #{faceImg,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.aijuke.hpface.model.IdentityFacePerson" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.aijuke.hpface.model.IdentityFacePerson">
     update identity_face_person
     set name = #{name,jdbcType=VARCHAR},
-      face_img = #{faceImg,jdbcType=VARCHAR},
       user_type = #{userType,jdbcType=VARCHAR},
       id_card_num = #{idCardNum,jdbcType=VARCHAR},
       ic_card_num = #{icCardNum,jdbcType=VARCHAR},
+      third_id = #{thirdId,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      face_img = #{faceImg,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aijuke.hpface.model.IdentityFacePerson">
+    update identity_face_person
+    set name = #{name,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      id_card_num = #{idCardNum,jdbcType=VARCHAR},
+      ic_card_num = #{icCardNum,jdbcType=VARCHAR},
+      third_id = #{thirdId,jdbcType=VARCHAR},
+      source = #{source,jdbcType=INTEGER},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
